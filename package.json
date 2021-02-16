@@ -1,0 +1,33 @@
+{
+  "name": "pocket-stocks-server-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:production": "heroku run npm run migrate",
+    "deploy": "git push heroku HEAD:main",
+    "postdeploy": "npm run migrate:production"
+  },
+  "keywords": [],
+  "engines": {
+    "node": "14.15.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "heroku": "^7.47.12",
+    "knex": "^0.21.17",
+    "mocha": "^8.3.0",
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1",
+    "postgrator": "^4.1.1",
+    "postgrator-cli": "^4.0.0",
+    "procfile": "^0.1.1"
+  }
+}
