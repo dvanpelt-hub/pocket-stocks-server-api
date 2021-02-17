@@ -16,7 +16,7 @@ app.use(helmet());
 app.use(errorHandler);
 app.use("/api/stocks", stocksRouter);
 
-app.get("/hello", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
