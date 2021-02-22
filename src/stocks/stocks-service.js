@@ -1,14 +1,6 @@
 const StocksService = {
-  // getAllStocks(knex) {
-  //   return knex.select("*").from("stock_holdings")
-  // },
-  getAllStocks() {
-    return fetch(`http://localhost:3000/api/stocks/home`)
-    .then(res => 
-      (!res.ok)
-      ? res.json().then(e => Promise.reject(e))
-      : res.json()
-      )
+  getAllStocks(knex) {
+    return knex.select("*").from("stock_holdings")
   },
   insertStock(knex, newStock) {
     return knex
