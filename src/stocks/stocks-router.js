@@ -25,7 +25,7 @@ stocksRouter
     const { newStock } = req.body;
     console.log(newStock);
 
-    for (const [key, value] of Object.entries(ticker_symbol, recommendation_status, stock_value, posting)) {
+    for (const [key, value] of Object.entries(newStock)) {
       if (value === null) {
         return res.status(400).json({
           error: { message: `Missing ${key} in request body` },
