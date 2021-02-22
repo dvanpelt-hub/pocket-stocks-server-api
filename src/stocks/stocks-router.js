@@ -22,6 +22,7 @@ stocksRouter
   })
 
   .post(jsonParser, (req, res, next) => {
+    console.log(req.body);
     const { newStock } = req.body;
 
     for (const [key, value] of Object.entries(newStock)) {
