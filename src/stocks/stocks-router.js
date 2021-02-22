@@ -23,7 +23,6 @@ stocksRouter
 
   .post(jsonParser, (req, res, next) => {
     const { newStock } = req.body;
-    console.log("test");    
 
     for (const [key, value] of Object.entries(newStock)) {
       if (value === null) {
@@ -33,6 +32,7 @@ stocksRouter
       }
     }
     StocksService.insertStock(req.app.get("db"), newStock).then((stock) => {
+      console.log(newStock);
       res
         .status(201)
         .location(path.posix.join(req.originalUrl, `/${stock.id}`))
