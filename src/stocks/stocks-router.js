@@ -22,7 +22,8 @@ stocksRouter
   })
 
   .post(jsonParser, (req, res, next) => {
-    const { ticker_symbol, recommendation_status, stock_value, posting } = req.body;
+    const { newStock } = req.body;
+    console.log(newStock);
 
     for (const [key, value] of Object.entries(ticker_symbol, recommendation_status, stock_value, posting)) {
       if (value === null) {
