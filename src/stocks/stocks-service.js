@@ -10,7 +10,7 @@ const StocksService = {
   //     .then(rows => rows[0])
   // },
   insertStock(knex) {
-    return knex('stock_holdings').insert({ticker_symbol: ticker_symbol}, {recommendation_status: recommendation_status}, {stock_value: stock_value}, {posting: posting}, {purchase_price: purchase_price})
+    return knex('stock_holdings').insert(ticker_symbol, ecommendation_status, stock_value, posting, purchase_price)
   },
   getById(knex, id) {
     return knex
