@@ -2,9 +2,9 @@ const StocksService = {
   getAllStocks(knex) {
     return knex.select("*").from("stock_holdings")
   },
-  insertStock(knex, ticker_symbol) {
+  insertStock(knex, ticker_symbol, recommendation_status, stock_value, posting, purchase_price) {
     return knex
-      .insert(ticker_symbol)
+      .insert(ticker_symbol, recommendation_status, stock_value, posting, purchase_price)
       .into("stock_holdings")
       .returning("*")
       .then(rows => rows[0])
