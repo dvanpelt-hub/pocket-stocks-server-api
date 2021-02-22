@@ -1,10 +1,12 @@
+const stocksRouter = require("./stocks-router")
+
 const StocksService = {
   getAllStocks(knex) {
     return knex.select("*").from("stock_holdings")
   },
-  insertStock(knex, newStocks) {
+  insertStock(knex, ticker_symbol, recommendation_status, stock_value, posting, purchase_price) {
     return knex
-      .insert(newStocks)
+      .insert(ticker_symbol, recommendation_status, stock_value, posting, purchase_price)
       .into("stock_holdings")
       .returning("*")
       .then(rows => rows[0])
