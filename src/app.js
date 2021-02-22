@@ -11,9 +11,12 @@ const app = express();
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
 app.use(cors());
+app.use(express.json());
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(errorHandler);
+
+//Plugs stocksRouter at the "/api/stocks" route (aka the 'root' route for this)
 app.use("/api/stocks", stocksRouter);
 
 app.get("/", (req, res) => {
