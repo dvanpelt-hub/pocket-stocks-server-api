@@ -23,7 +23,6 @@ stocksRouter
 
   .post(jsonParser, (req, res, next) => {
     const { ticker_symbol } = req.body;
-    console.log(ticker_symbol);
     console.log(req.body);
 
     for (const [key, value] of Object.entries(ticker_symbol)) {
@@ -33,7 +32,7 @@ stocksRouter
         });
       }
     }
-    StocksService.insertStock(req.app.get("db"), newStock)
+    StocksService.insertStock(req.app.get("db"), ticker_symbol)
     .then((stock) => {
       res
         .status(201)
