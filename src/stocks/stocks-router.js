@@ -31,7 +31,7 @@ stocksRouter
         });
       }
     }
-    StocksService.insertStock(req.app.get("db"), ticker_symbol, recommendation_status, stock_value, posting).then((stock) => {
+    StocksService.insertStock(req.app.get("db"), newStock).then((stock) => {
       res
         .status(201)
         .location(path.posix.join(req.originalUrl, `/${stock.id}`))
