@@ -22,17 +22,16 @@ stocksRouter
   })
 
   .post(jsonParser, (req, res, next) => {
-    const { ticker_symbol } = req.body;
-    const newStock = { ticker_symbol };
+    const { ticker_symbol, recommendation_status, stock_value, posting } = req.body;
 
-    for (const [key, value] of Object.entries(newStock)) {
+    for (const [key, value] of Object.entries(ticker_symbol, recommendation_status, stock_value, posting)) {
       if (value === null) {
         return res.status(400).json({
           error: { message: `Missing ${key} in request body` },
         });
       }
     }
-    StocksService.insertStock(req.app.get("db"), newStock).then((stock) => {
+    StocksService.insertStock(req.app.get("db"), ticker_symbol, recommendation_status, stock_value, posting).then((stock) => {
       res
         .status(201)
         .location(path.posix.join(req.originalUrl, `/${stock.id}`))
