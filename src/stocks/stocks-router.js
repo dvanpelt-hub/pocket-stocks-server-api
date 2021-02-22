@@ -22,11 +22,11 @@ stocksRouter
   })
 
   .post(jsonParser, (req, res, next) => {
-    const { newStock } = req.body;
-    console.log(newStock);
+    const { ticker_symbol } = req.body;
+    console.log(ticker_symbol);
     console.log(req.body);
 
-    for (const [key, value] of Object.entries(newStock)) {
+    for (const [key, value] of Object.entries(ticker_symbol)) {
       if (value === null) {
         return res.status(400).json({
           error: { message: `Missing ${key} in request body` },
