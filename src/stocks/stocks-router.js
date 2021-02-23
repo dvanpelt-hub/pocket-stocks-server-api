@@ -24,7 +24,7 @@ stocksRouter
   .post(jsonParser, (req, res, next) => {
     const { ticker_symbol, recommendation_status, stock_value, posting, purchase_price } = req.body;
     console.log(ticker_symbol);
-    console.log(recommendation_status);
+    console.log(typeof(recommendation_status));
     console.log(stock_value);
     console.log(posting);
     console.log(purchase_price);
