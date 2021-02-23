@@ -18,13 +18,13 @@ const StocksService = {
     purchase_price
   ) {
     return knex("stock_holdings")
-      .insert([
+      .insert({
         ticker_symbol,
         recommendation_status,
         stock_value,
         posting,
         purchase_price
-      ])
+      })
       .returning("*")
       .then((rows) => rows[0]);
   },
