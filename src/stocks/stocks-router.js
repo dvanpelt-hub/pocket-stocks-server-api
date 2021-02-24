@@ -22,77 +22,86 @@ stocksRouter
   })
 
   .post(jsonParser, (req, res, next) => {
-    const { ticker_symbol, recommendation_status, stock_value, posting, purchase_price } = req.body;
-    console.log(ticker_symbol);
-    console.log(typeof(recommendation_status));
-    console.log(stock_value);
-    console.log(posting);
-    console.log(purchase_price);
-    
+    const {
+      ticker_symbol,
+      recommendation_status,
+      stock_value,
+      posting,
+      purchase_price,
+    } = req.body;
 
-    for (const [key, value] of Object.entries(ticker_symbol, recommendation_status, stock_value, posting, purchase_price)) {
+    for (const [key, value] of Object.entries(
+      ticker_symbol,
+      recommendation_status,
+      stock_value,
+      posting,
+      purchase_price
+    )) {
       if (value === null) {
         return res.status(400).json({
           error: { message: `Missing ${key} in request body` },
         });
       }
     }
-    StocksService.insertStock(req.app.get("db"), ticker_symbol, recommendation_status, stock_value, posting, purchase_price)
-    .then((stock) => {
-      res
-        .status(201)
-        .location(path.posix.join(req.originalUrl, `/${stock.id}`))
-        .json(sanitizeStocks(stock));
+    StocksService.insertStock(
+      req.app.get("db"),
+      ticker_symbol,
+      recommendation_status,
+      stock_value,
+      posting,
+      purchase_price
+    )
+      .then((stock) => {
+        res
+          .status(201)
+          .location(path.posix.join(req.originalUrl, `/${stock.id}`))
+          .json(sanitizeStocks(stock));
       })
       .catch(next);
-    });
+  });
 
-    stocksRouter
-      .route("/:id")
-      .all((req, res, next) => {
-        StocksService.getById(req.app.get("db"), req.params.id)
-          .then(stock => {
-            if (!stock) {
-              return res.status(404).json({
-                error: { message: "Stock doesn't exist" },
-              });
-            }
-            res.stock = stock;
-            next();
-          })
-          .catch(next);
+stocksRouter
+  .route("/:id")
+  .all((req, res, next) => {
+    StocksService.getById(req.app.get("db"), req.params.id)
+      .then((stock) => {
+        if (!stock) {
+          return res.status(404).json({
+            error: { message: "Stock doesn't exist" },
+          });
+        }
+        res.stock = stock;
+        next();
       })
+      .catch(next);
+  })
 
-    .get((req, res, next) => {
-      res.json(sanitizeStocks(res.stock));
-    })
-    .delete((req, res, next) => {
-      StocksService.deleteStock(req.app.get("db"), req.params.id)
-        .then(() => {
-          res.status(204).end();
-        })
-        .catch(next);
-    })
-    .patch(jsonParser, (req, res, next) => {
-      const { ticker_symbol } = req.body;
-      const stockToUpdate = { ticker_symbol };
-      
-      if(!ticker_symbol) {
-        return res.status(400).json({
-          error: {
-            message: "Request must contain ticker symbol"
-          }
-        })
-      }
-      StocksService.updateStock(
-        req.app.get("db"),
-        req.params.id,
-        stockToUpdate
-      )
-        .then(() => {
-          res.status(204).end();
-        })
-        .catch(next);
-    });
-    
+  .get((req, res, next) => {
+    res.json(sanitizeStocks(res.stock));
+  })
+  .delete((req, res, next) => {
+    StocksService.deleteStock(req.app.get("db"), req.params.id)
+      .then(() => {
+        res.status(204).end();
+      })
+      .catch(next);
+  })
+  .patch(jsonParser, (req, res, next) => {
+    const { ticker_symbol } = req.body;
+    const stockToUpdate = { ticker_symbol };
+
+    if (!ticker_symbol) {
+      return res.status(400).json({
+        error: {
+          message: "Request must contain ticker symbol",
+        },
+      });
+    }
+    StocksService.updateStock(req.app.get("db"), req.params.id, stockToUpdate)
+      .then(() => {
+        res.status(204).end();
+      })
+      .catch(next);
+  });
+
 module.exports = stocksRouter;
