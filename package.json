@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server.js",
     "migrate": "postgrator --config postgrator-config.js",
-    "migrate:test": "env NODE_ENV=test npm run migrate",
+    "migrate:test": "SET env NODE_ENV=test npm run migrate",
     "migrate:production": "heroku run npm run migrate",
     "deploy": "git push heroku HEAD:main",
     "postdeploy": "npm run migrate:production",
