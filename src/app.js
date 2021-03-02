@@ -10,7 +10,23 @@ const { NODE_ENV } = require("./config");
 const app = express();
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
-app.use(cors());
+const approvedOrigins = [
+  "http://localhost:3000",
+  "https://quiet-woodland-22837.herokuapp.com",
+];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (approvedOrigins.indexOf(origin) === -1) {
+        const msg = "CORS error, please try again";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
+
 app.use(express.json());
 app.use(morgan(morganOption));
 app.use(helmet());
