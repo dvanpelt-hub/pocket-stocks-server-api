@@ -12,6 +12,7 @@ const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
 const approvedOrigins = [
   "http://localhost:3000",
+  "https://pocket-stocks-client.vercel.app/home",
   "https://quiet-woodland-22837.herokuapp.com",
 ];
 app.use(
