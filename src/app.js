@@ -6,25 +6,14 @@ const helmet = require("helmet");
 const stocksRouter = require("./stocks/stocks-router");
 const errorHandler = require("./errorHandler");
 const { NODE_ENV } = require("./config");
+const { CLIENT_ORIGIN } = require("./cors/cors");
 
 const app = express();
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
-const approvedOrigins = [
-  "http://localhost:3000",
-  "https://pocket-stocks-client.vercel.app/home",
-  "https://quiet-woodland-22837.herokuapp.com",
-];
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (approvedOrigins.indexOf(origin) === -1) {
-        const msg = "CORS error, please try again";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
+    origin: CLIENT_ORIGIN,
   })
 );
 
