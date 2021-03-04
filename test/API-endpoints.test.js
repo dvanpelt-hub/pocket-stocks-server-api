@@ -22,7 +22,7 @@ describe("Stock postings endpoints", function () {
   context("Given there are stocks in the table", () => {
     const testStocks = [
       {
-        id: 1,
+        id: 10001,
         ticker_symbol: "ABC",
         recommendation_status: "Buy",
         stock_value: "Overvalued",
@@ -30,7 +30,7 @@ describe("Stock postings endpoints", function () {
         purchase_price: 100,
       },
       {
-        id: 2,
+        id: 10002,
         ticker_symbol: "DEF",
         recommendation_status: "Sell",
         stock_value: "Undervalued",
@@ -38,7 +38,7 @@ describe("Stock postings endpoints", function () {
         purchase_price: 200,
       },
       {
-        id: 3,
+        id: 10003,
         ticker_symbol: "GHI",
         recommendation_status: "Hold",
         stock_value: "Accurate",
@@ -53,8 +53,7 @@ describe("Stock postings endpoints", function () {
       return supertest(app).get("/api/stocks/home").expect(200);
     });
     it("GET by :id", () => {
-      const stockId = 2;
-      // const expectedStock = testStocks[stockId - 1];
+      const stockId = 10001;
       return supertest(app).get(`/api/stocks/${stockId}`).expect(200);
     });
     // it("POST", function (done) {
@@ -73,20 +72,20 @@ describe("Stock postings endpoints", function () {
     //       expect(res.body[0].ticker_symbol).to.eq("JKL");
     //       done();
     //     });
-    // describe(`POST /api/stocks/home`, () => {
-    //   it(`POSTs a new holding and receives a status of 201`, function () {
-    //     return supertest(app)
-    //       .post("/api/stocks/home")
-    //       .send({
-    //         ticker_symbol: "JKL",
-    //         recommendation_status: "BUY",
-    //         stock_value: "Accurate",
-    //         posting: "BUY!",
-    //         purchase_price: 200,
-    //       })
-    //       .expect(201);
-    //   });
-    // });
+    describe(`POST /api/stocks/home`, () => {
+      it(`POSTs a new holding and receives a status of 201`, function () {
+        return supertest(app)
+          .post("/api/stocks/home")
+          .send({
+            ticker_symbol: "JKL",
+            recommendation_status: "BUY",
+            stock_value: "Accurate",
+            posting: "BUY!",
+            purchase_price: 200,
+          })
+          .expect(201);
+      });
+    });
   });
 });
 
