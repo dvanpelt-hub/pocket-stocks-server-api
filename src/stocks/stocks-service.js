@@ -27,9 +27,9 @@ const StocksService = {
   deleteStock(knex, id) {
     return knex("stock_holdings").where({ id }).delete();
   },
-  updateStock(knex, id, newStockFields) {
-    return knex("stock_holdings").where({ id }).update(newStockFields);
-  },
+  // updateStock(knex, id, newStockFields) {
+  //   return knex("stock_holdings").where({ id }).update(newStockFields);
+  // },
 };
 
 module.exports = StocksService;

@@ -57,6 +57,36 @@ describe("Stock postings endpoints", function () {
       // const expectedStock = testStocks[stockId - 1];
       return supertest(app).get(`/api/stocks/${stockId}`).expect(200);
     });
+    // it("POST", function (done) {
+    //   return supertest(app)
+    //     .post("/api/stocks/home")
+    //     .send({
+    //       ticker_symbol: "JKL",
+    //       recommendation_status: "BUY",
+    //       stock_value: "Accurate",
+    //       posting: "BUY!",
+    //       purchase_price: 200,
+    //     })
+    //     .expect(200)
+    //     .end(function (err, res) {
+    //       if (err) return done(err);
+    //       expect(res.body[0].ticker_symbol).to.eq("JKL");
+    //       done();
+    //     });
+    // describe(`POST /api/stocks/home`, () => {
+    //   it(`POSTs a new holding and receives a status of 201`, function () {
+    //     return supertest(app)
+    //       .post("/api/stocks/home")
+    //       .send({
+    //         ticker_symbol: "JKL",
+    //         recommendation_status: "BUY",
+    //         stock_value: "Accurate",
+    //         posting: "BUY!",
+    //         purchase_price: 200,
+    //       })
+    //       .expect(201);
+    //   });
+    // });
   });
 });
 
