@@ -22,8 +22,11 @@ There are several endpoints used for this API. For each, use the following requi
 
 The utility of these are:
 
--To retrieve all stock positions: GET = /api/stocks/home
--To post a new stock position: POST = /api/stocks/home
--To retrieve a specific stock position: GET /api/stocks/:id (replace ':id' with the id relative to the desired stock position).
--To delete a stock position: DELETE = /api/stocks/:id (replace ':id' with the id relative to the desired stock position).
+- To retrieve all stock positions: GET = /api/stocks/home
+
+- To post a new stock position: POST = /api/stocks/home
+
+- To retrieve a specific stock position: GET /api/stocks/:id (replace ':id' with the id relative to the desired stock position).
+
+- To delete a stock position: DELETE = /api/stocks/:id (replace ':id' with the id relative to the desired stock position).
 
