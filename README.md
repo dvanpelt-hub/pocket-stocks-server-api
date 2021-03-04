@@ -1,4 +1,4 @@
-POCKET STOCKS IS AN APP FOR YOUR OPINIONS ON ALL THINGS STOCKS!
+### POCKET STOCKS IS AN APP FOR YOUR OPINIONS ON ALL THINGS STOCKS!
 
 To use this app, simply navigate to the 'Holdings' page, enter the required information:
 
@@ -16,7 +16,7 @@ From there, be sure to click 'Get current price' in order to retrieve the most r
 
 To calculate the ROI based on the purchase price listed in the original post, simply click the 'Get ROI' button.
 
-ENDPOINT DOCUMENTATION:
+### ENDPOINT DOCUMENTATION:
 
 There are several endpoints used for this API. For each, use the following required parameters: /api/stocks
 
